@@ -1883,6 +1883,9 @@ $('#modalConfirm').addEventListener('click', (e) => {
 /* =========================================================
    FINALIZAR → MONTA MENSAGEM
    ========================================================= */
+/* =========================================================
+   FINALIZAR → MONTA MENSAGEM
+   ========================================================= */
 $('#btnWhats').addEventListener('click', () => {
   if (!carrinho.length){ toast('Seu carrinho está vazio! 🛒'); return; }
 
@@ -1927,6 +1930,9 @@ $('#btnWhats').addEventListener('click', () => {
   const total = totalCarrinho();
   const L = [];
 
+  // ALERTA MOVIDO PARA O TOPO, EM MAIÚSCULO E NEGRITO
+  L.push('*ATENÇÃO: PARA CONFIRMAR O SEU PEDIDO, É PRECISO CLICAR NO BOTÃO ENVIAR AQUI NO WHATSAPP. SEM A SUA AÇÃO, A MENSAGEM NÃO CHEGARÁ ATÉ NÓS.*');
+  L.push('');
   L.push('*NOVO PEDIDO - ALHO & FEIRA*');
   L.push('================================');
   L.push('');
@@ -1940,8 +1946,7 @@ $('#btnWhats').addEventListener('click', () => {
   carrinho.forEach((item) => {
     const subtotal = item.preco * item.qtd;
     const desc = item.desc ? ` (${boldPesoWpp(item.desc)})` : '';
-    // Alterado para ✅ conforme solicitado
-    L.push(`✅ ${item.nome}${desc}`);
+    L.push(`* ${item.nome}${desc}`);
     L.push(`   ${item.qtd}x ${moeda(item.preco)} = *${moeda(subtotal)}*`);
     L.push('');
   });
@@ -1955,9 +1960,6 @@ $('#btnWhats').addEventListener('click', () => {
   if (complemento) L.push(`Complemento: ${complemento}`);
   if (bairro) L.push(`Bairro: ${bairro}`);
   if (cidade) L.push(`Cidade/UF: ${cidade}`);
-  L.push('');
-  // Removido o bloco ENTREGA e AVISO SOBRE A FEIRA conforme solicitado
-  L.push('*ATENCAO: para confirmar seu pedido, e preciso clicar no botao ENVIAR aqui no WhatsApp. Sem isso, a mensagem nao chegara ate nos.*');
   L.push('');
   L.push('_Pedido gerado pelo site Alho & Feira_');
 
