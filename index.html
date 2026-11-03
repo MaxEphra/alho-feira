@@ -167,14 +167,12 @@ a{ color: inherit; text-decoration: none; }
   .hero__art{ order: -1; font-size: clamp(5rem, 30vw, 8rem); }
 }
 
-/* =========================================================
-   CARROSSEL DE PRODUTOS (SLIDE) - TAMANHO AJUSTADO
-   ========================================================= */
+/* CARROSSEL */
 .carousel-section{ padding: 44px 0 20px; }
 .carousel{
   position: relative;
   width: 100%;
-  max-width: 620px; /* Reduzido de 820px para 620px */
+  max-width: 620px;
   margin: 0 auto;
   border-radius: 20px;
   overflow: hidden;
@@ -252,7 +250,7 @@ a{ color: inherit; text-decoration: none; }
   .carousel__dots{ bottom: 10px; }
 }
 
-/* GALERIA ITEM */
+/* GALERIA */
 .gallery__item{
   position: relative; display: block;
   overflow: hidden; background: var(--verde-bg);
@@ -317,11 +315,8 @@ a{ color: inherit; text-decoration: none; }
 }
 .sec-head p{ color: var(--texto-2); font-size: .96rem; }
 
-/* BANNER DA FEIRA */
-.feira-banner-wrap {
-  text-align: center;
-  margin-bottom: 26px;
-}
+/* BANNER FEIRA */
+.feira-banner-wrap { text-align: center; margin-bottom: 26px; }
 .feira-banner {
   max-width: 100%;
   width: 620px;
@@ -331,7 +326,7 @@ a{ color: inherit; text-decoration: none; }
   display: block;
 }
 
-/* AVISO DE PRAZO */
+/* AVISO */
 .deadline-note{
   display: flex; align-items: flex-start; gap: 14px;
   margin-bottom: 22px; padding: 16px 18px;
@@ -368,20 +363,44 @@ a{ color: inherit; text-decoration: none; }
   transform: translateY(-4px);
   box-shadow: var(--sombra-lg); border-color: #cfe8d8;
 }
+
+/* ============================================================
+   IMAGEM DO CARD — CORRIGIDO
+   - aspect-ratio 4/5 (vertical) combina com fotos de sacos/potes
+   - contain garante que a imagem inteira apareça
+   - padding reduzido = imagem maior dentro do card
+   - fundo branco = sobras se fundem com o card
+   ============================================================ */
 .card__media{
-  position: relative; height: 148px;
-  border-radius: 12px; overflow: hidden;
-  display: grid; place-items: center;
-  font-size: 3rem; line-height: 1;
-  background: linear-gradient(135deg, #eef8f0 0%, #f8fdfa 100%);
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 12px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  font-size: 3rem;
+  line-height: 1;
+  background: #ffffff;
   flex-shrink: 0;
+  border: 1px solid #f0f5f1;
 }
 .card__media img{
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 4px;
+  background: #ffffff;
+  display: block;
 }
-.card--feira .card__media{ height: 92px; font-size: 2.1rem; }
+.card--feira .card__media{
+  aspect-ratio: 4 / 5;
+  font-size: 2.1rem;
+}
+.card--feira .card__media img{
+  padding: 3px;
+}
 
 .card__info{ flex: 1; display: flex; flex-direction: column; }
 .card__title{
@@ -428,7 +447,7 @@ a{ color: inherit; text-decoration: none; }
 .btn-add:active{ transform: scale(.95); }
 
 .card--destaque{ border-color: #e8d9a8; background: linear-gradient(180deg, #fffdf6, #fff); }
-.card--destaque .card__media{ background: linear-gradient(135deg, #f6e6f4, #fdf3fb); }
+.card--destaque .card__media{ background: #ffffff; }
 .badge-tag{
   position: absolute; top: 12px; left: 12px; z-index: 2;
   background: var(--amarelo); color: #4a3200;
@@ -471,7 +490,7 @@ a{ color: inherit; text-decoration: none; }
   color: var(--verde-escuro);
 }
 
-/* LISTA SELEÇÃO */
+/* SELEÇÃO */
 .selecao{
   margin-top: 26px;
   background: #fff; border: 1px solid var(--borda);
@@ -514,10 +533,17 @@ a{ color: inherit; text-decoration: none; }
   width: 56px; height: 56px;
   border-radius: 11px; overflow: hidden;
   position: relative; display: grid; place-items: center;
-  background: linear-gradient(135deg, #eef8f0, #f8fdfa);
+  background: #ffffff;
   font-size: 1.7rem; flex-shrink: 0;
+  border: 1px solid #f0f5f1;
 }
-.sel-item__img img{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.sel-item__img img{ 
+  position: absolute; inset: 0; 
+  width: 100%; height: 100%; 
+  object-fit: contain; 
+  background: #fff; 
+  padding: 2px; 
+}
 .sel-item__info{ min-width: 0; }
 .sel-item__name{
   font-size: .93rem; font-weight: 700;
@@ -551,7 +577,7 @@ a{ color: inherit; text-decoration: none; }
   .sel-item__del{ display: none; }
 }
 
-/* BARRA RESUMO */
+/* BARRA */
 .feira-bar{
   position: sticky; bottom: 14px; z-index: 30;
   margin-top: 18px;
@@ -585,7 +611,7 @@ a{ color: inherit; text-decoration: none; }
   .feira-bar__actions .btn-clear{ width: 100%; }
 }
 
-/* AVISO ENTREGA */
+/* ENTREGA */
 .delivery-note{
   display: flex; align-items: flex-start; gap: 12px;
   margin-top: 20px; padding: 14px 16px;
@@ -657,14 +683,18 @@ a{ color: inherit; text-decoration: none; }
 }
 .citem__top{ display: flex; gap: 11px; }
 .citem__emoji{
-  width: 56px; height: 56px; border-radius: 12px;
+  width: 60px; height: 60px; border-radius: 12px;
   position: relative; overflow: hidden;
-  background: var(--verde-bg); display: grid; place-items: center;
+  background: #ffffff; display: grid; place-items: center;
   font-size: 1.6rem; flex-shrink: 0;
+  border: 1px solid #f0f5f1;
 }
 .citem__emoji img{
   position: absolute; inset: 0;
-  width: 100%; height: 100%; object-fit: cover;
+  width: 100%; height: 100%; 
+  object-fit: contain;
+  background: #fff;
+  padding: 3px;
   z-index: 2;
 }
 .citem__emoji span{ position: relative; z-index: 1; }
@@ -929,9 +959,6 @@ a{ color: inherit; text-decoration: none; }
   </div>
 </section>
 
-<!-- =========================================================
-     CARROSSEL DE PRODUTOS
-     ========================================================= -->
 <section class="carousel-section">
   <div class="container">
     <div class="carousel" id="carousel">
@@ -1074,7 +1101,7 @@ a{ color: inherit; text-decoration: none; }
       <p>
         <strong>Entrega realizada por serviços de terceiros</strong> como
         <strong>iFood</strong> e <strong>99</strong>. Após confirmar seu pedido
-        pelo WhatsApp, enviaremos o link do app para você rastrear a entrega
+        pelo WhatsApp, enviaremos o link do app para você finalizar a entrega
         com toda comodidade e segurança.
       </p>
     </div>
@@ -1242,22 +1269,21 @@ a{ color: inherit; text-decoration: none; }
 
 <div class="toast" id="toast"></div>
 <script>
-/* =========================================================
-   CONFIGURAÇÕES
-   ========================================================= */
+/* CONFIG */
 const CONFIG = {
   whatsapp: '5511989321702',
   feira: { precoItem: 4.50 },
   modalSegundos: 5
 };
 
-/* IMAGENS */
+/* ⚠️ ATENÇÃO: NOMES ORIGINAIS DOS ARQUIVOS!
+   Não renomeie os arquivos — use exatamente como estão no servidor */
 const IMG = {
   'desc-250': './d.alho.webp',
   'desc-500': './d.alho.webp',
   'desc-1k':  './d.alho.webp',
   'desc-2k':  './d.alho.webp',
-  'pic-250':  './triturado.webp',   // Garanta que o arquivo exista com esse nome
+  'pic-250':  './triturado.webp',
   'pic-500':  './triturado.webp',
   'pic-1k':   './triturado.webp',
   'roxo-5':   './alho.roxo.webp',
@@ -1291,7 +1317,7 @@ const PRODUTOS = [
   { id:'pic-500', cat:'picado', nome:'Alho Picado no Pote', peso:'500g', preco:32.90, emoji:'🫙', tag:'Mais vendido',          tagTipo:'vendido' },
   { id:'pic-1k',  cat:'picado', nome:'Alho Picado no Pote', peso:'1kg',  preco:62.90, emoji:'🫙', tag:'Melhor custo-benefício', tagTipo:'custo'   },
 
-  { id:'roxo-5', cat:'roxo', nome:'Alho Roxo', peso:'5 cabeças', preco:12.00, emoji:'🧄', destaque:true, destaquePeso:true }
+  { id:'roxo-5', cat:'roxo', nome:'Alho Roxo', peso:'5 cabeças', preco:15.00, emoji:'🧄', destaque:true, destaquePeso:true }
 ];
 
 const HORTIFRUTI = [
@@ -1342,13 +1368,11 @@ function animarBadge(){
   });
 }
 function htmlImagem(src, alt, emoji){
-  const imgTag = src ? `<img src="${src}" alt="${alt}" loading="lazy" onerror="this.remove();">` : '';
+  const imgTag = src ? `<img src="${src}" alt="${alt}" loading="lazy" onerror="this.style.opacity='0';">` : '';
   return `<span aria-hidden="true">${emoji || '📦'}</span>${imgTag}`;
 }
 
-/* =========================================================
-   CARROSSEL
-   ========================================================= */
+/* CARROSSEL */
 (function initCarousel(){
   const track   = $('#carouselTrack');
   const slides  = track.querySelectorAll('.carousel__slide');
@@ -1408,7 +1432,6 @@ function htmlImagem(src, alt, emoji){
   track.addEventListener('touchstart', (e) => onStart(e.touches[0].clientX), { passive: true });
   track.addEventListener('touchmove',  (e) => onMove(e.touches[0].clientX),  { passive: true });
   track.addEventListener('touchend', onEnd);
-
   track.addEventListener('mousedown', (e) => { e.preventDefault(); onStart(e.clientX); });
   window.addEventListener('mousemove', (e) => onMove(e.clientX));
   window.addEventListener('mouseup', onEnd);
@@ -1418,7 +1441,6 @@ function htmlImagem(src, alt, emoji){
     if (e.key === 'ArrowRight') goTo(current + 1);
   });
 
-  /* bloqueia clique depois de arrastar */
   slides.forEach(slide => {
     const link = slide.querySelector('a');
     if (link){
@@ -1431,9 +1453,7 @@ function htmlImagem(src, alt, emoji){
   goTo(0);
 })();
 
-/* =========================================================
-   RENDER PRODUTOS
-   ========================================================= */
+/* PRODUTOS */
 function cardProduto(p){
   const tagHTML = p.tag ? `<span class="card__tag card__tag--${p.tagTipo}">${p.tag}</span>` : '';
   const pesoClass = p.destaquePeso ? 'card__peso card__peso--roxo' : 'card__peso';
@@ -1462,9 +1482,7 @@ function renderProdutos(){
   monta('roxo',       '#gridRoxo');
 }
 
-/* =========================================================
-   FEIRA
-   ========================================================= */
+/* FEIRA */
 function renderFeira(){
   const grid = $('#feiraGrid');
   grid.innerHTML = HORTIFRUTI.map(h => `
@@ -1549,9 +1567,7 @@ function atualizarResumoFeira(){
   renderFeiraLista();
 }
 
-/* =========================================================
-   CARRINHO
-   ========================================================= */
+/* CARRINHO */
 function adicionarAoCarrinho(produto, qtd = 1){
   const existente = carrinho.find(i => i.id === produto.id);
   if (existente) existente.qtd += qtd;
@@ -1625,9 +1641,7 @@ function renderCarrinho(){
   $('#fabBadge').textContent  = qtd;
 }
 
-/* =========================================================
-   ABRIR / FECHAR CARRINHO
-   ========================================================= */
+/* ABRIR / FECHAR */
 function abrirCarrinho(){
   $('#cart').classList.add('open');
   $('#overlay').classList.add('open');
@@ -1639,9 +1653,7 @@ function fecharCarrinho(){
   document.body.classList.remove('no-scroll');
 }
 
-/* =========================================================
-   EVENTOS GLOBAIS
-   ========================================================= */
+/* EVENTOS */
 document.addEventListener('click', (e) => {
   const btnAdd = e.target.closest('[data-add]');
   if (btnAdd){
@@ -1677,9 +1689,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-/* =========================================================
-   ADICIONAR FEIRA AO CARRINHO
-   ========================================================= */
+/* ADICIONAR FEIRA */
 $('#feiraAdd').addEventListener('click', () => {
   const selecionados = Object.entries(feiraSelecao).filter(([, q]) => q > 0);
   if (!selecionados.length){ toast('Selecione pelo menos um item da feira'); return; }
@@ -1709,9 +1719,7 @@ $('#feiraAdd').addEventListener('click', () => {
   setTimeout(abrirCarrinho, 250);
 });
 
-/* =========================================================
-   LIMPAR
-   ========================================================= */
+/* LIMPAR */
 $('#feiraLimpar').addEventListener('click', () => {
   feiraSelecao = {};
   atualizarResumoFeira();
@@ -1726,9 +1734,7 @@ $('#cartClear').addEventListener('click', () => {
   }
 });
 
-/* =========================================================
-   MÁSCARAS
-   ========================================================= */
+/* MÁSCARA FONE */
 $('#fone').addEventListener('input', (e) => {
   let v = e.target.value.replace(/\D/g, '').slice(0, 11);
   if (v.length > 10)      v = v.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
@@ -1739,9 +1745,7 @@ $('#fone').addEventListener('input', (e) => {
   e.target.classList.remove('invalid');
 });
 
-/* =========================================================
-   CEP + VIACEP
-   ========================================================= */
+/* CEP */
 let cepFetchToken = 0;
 $('#cep').addEventListener('input', (e) => {
   let v = e.target.value.replace(/\D/g, '').slice(0, 8);
@@ -1794,7 +1798,6 @@ async function buscarCep(cep){
   }
 }
 
-/* CHECKBOX SEM NÚMERO */
 $('#semNumero').addEventListener('change', (e) => {
   const numEl = $('#numero');
   if (e.target.checked){
@@ -1807,14 +1810,11 @@ $('#semNumero').addEventListener('change', (e) => {
   }
 });
 
-/* REMOVER .invalid AO DIGITAR */
 document.querySelectorAll('.field input, .field textarea').forEach(el => {
   el.addEventListener('input', () => el.classList.remove('invalid'));
 });
 
-/* =========================================================
-   MODAL DE CONFIRMAÇÃO
-   ========================================================= */
+/* MODAL */
 function abrirModal(url){
   modalUrl = url;
   $('#modalConfirm').classList.add('open');
@@ -1880,12 +1880,7 @@ $('#modalConfirm').addEventListener('click', (e) => {
   if (e.target === $('#modalConfirm')) fecharModal();
 });
 
-/* =========================================================
-   FINALIZAR → MONTA MENSAGEM
-   ========================================================= */
-/* =========================================================
-   FINALIZAR → MONTA MENSAGEM
-   ========================================================= */
+/* FINALIZAR */
 $('#btnWhats').addEventListener('click', () => {
   if (!carrinho.length){ toast('Seu carrinho está vazio! 🛒'); return; }
 
@@ -1930,7 +1925,6 @@ $('#btnWhats').addEventListener('click', () => {
   const total = totalCarrinho();
   const L = [];
 
-  // ALERTA MOVIDO PARA O TOPO, EM MAIÚSCULO E NEGRITO
   L.push('*ATENÇÃO: PARA CONFIRMAR O SEU PEDIDO, É PRECISO CLICAR NO BOTÃO ENVIAR AQUI NO WHATSAPP. SEM A SUA AÇÃO, A MENSAGEM NÃO CHEGARÁ ATÉ NÓS.*');
   L.push('');
   L.push('*NOVO PEDIDO - ALHO & FEIRA*');
@@ -1946,7 +1940,7 @@ $('#btnWhats').addEventListener('click', () => {
   carrinho.forEach((item) => {
     const subtotal = item.preco * item.qtd;
     const desc = item.desc ? ` (${boldPesoWpp(item.desc)})` : '';
-    L.push(`* ${item.nome}${desc}`);
+    L.push(`✅ ${item.nome}${desc}`);
     L.push(`   ${item.qtd}x ${moeda(item.preco)} = *${moeda(subtotal)}*`);
     L.push('');
   });
@@ -1967,9 +1961,7 @@ $('#btnWhats').addEventListener('click', () => {
   abrirModal(url);
 });
 
-/* =========================================================
-   ESC / INIT
-   ========================================================= */
+/* ESC / INIT */
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape'){
     if ($('#modalConfirm').classList.contains('open')) fecharModal();
