@@ -1933,7 +1933,7 @@ $('#btnWhats').addEventListener('click', () => {
   carrinho.forEach((item) => {
     const subtotal = item.preco * item.qtd;
     const desc = item.desc ? ` (${boldPesoWpp(item.desc)})` : '';
-    L.push(`✅ ${item.nome}${desc}`);
+    L.push(`* ${item.nome}${desc}`);
     L.push(`   ${item.qtd}x ${moeda(item.preco)} = *${moeda(subtotal)}*`);
     L.push('');
   });
