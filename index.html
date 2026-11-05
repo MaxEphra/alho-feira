@@ -8,10 +8,10 @@
 
 <meta property="og:title" content="🧄 Alho & Feira — Alho fresquinho e feira completa">
 <meta property="og:description" content="Alho descascado, picado e roxo fresquinhos + hortifrúti selecionado. Peça pelo WhatsApp!">
-<meta property="og:image" content="./d.alho.webp">
+<meta property="og:image" content="./arl.jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://seusite.com.br/">
+<meta property="og:url" content="https://maxephra.github.io/alho-feira/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Alho & Feira">
 <meta property="og:locale" content="pt_BR">
@@ -19,7 +19,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="🧄 Alho & Feira — Alho fresquinho e feira completa">
 <meta name="twitter:description" content="Alho descascado, picado e roxo fresquinhos + hortifrúti selecionado. Peça pelo WhatsApp!">
-<meta name="twitter:image" content="./d.alho.webp">
+<meta name="twitter:image" content="./arl.jpeg">
 
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -167,12 +167,14 @@ a{ color: inherit; text-decoration: none; }
   .hero__art{ order: -1; font-size: clamp(5rem, 30vw, 8rem); }
 }
 
-/* CARROSSEL */
+/* =========================================================
+   CARROSSEL DE PRODUTOS (SLIDE) - TAMANHO AJUSTADO
+   ========================================================= */
 .carousel-section{ padding: 44px 0 20px; }
 .carousel{
   position: relative;
   width: 100%;
-  max-width: 620px;
+  max-width: 620px; /* Reduzido de 820px para 620px */
   margin: 0 auto;
   border-radius: 20px;
   overflow: hidden;
@@ -250,7 +252,7 @@ a{ color: inherit; text-decoration: none; }
   .carousel__dots{ bottom: 10px; }
 }
 
-/* GALERIA */
+/* GALERIA ITEM */
 .gallery__item{
   position: relative; display: block;
   overflow: hidden; background: var(--verde-bg);
@@ -315,8 +317,11 @@ a{ color: inherit; text-decoration: none; }
 }
 .sec-head p{ color: var(--texto-2); font-size: .96rem; }
 
-/* BANNER FEIRA */
-.feira-banner-wrap { text-align: center; margin-bottom: 26px; }
+/* BANNER DA FEIRA */
+.feira-banner-wrap {
+  text-align: center;
+  margin-bottom: 26px;
+}
 .feira-banner {
   max-width: 100%;
   width: 620px;
@@ -326,7 +331,7 @@ a{ color: inherit; text-decoration: none; }
   display: block;
 }
 
-/* AVISO */
+/* AVISO DE PRAZO */
 .deadline-note{
   display: flex; align-items: flex-start; gap: 14px;
   margin-bottom: 22px; padding: 16px 18px;
@@ -363,44 +368,20 @@ a{ color: inherit; text-decoration: none; }
   transform: translateY(-4px);
   box-shadow: var(--sombra-lg); border-color: #cfe8d8;
 }
-
-/* ============================================================
-   IMAGEM DO CARD — CORRIGIDO
-   - aspect-ratio 4/5 (vertical) combina com fotos de sacos/potes
-   - contain garante que a imagem inteira apareça
-   - padding reduzido = imagem maior dentro do card
-   - fundo branco = sobras se fundem com o card
-   ============================================================ */
 .card__media{
-  position: relative;
-  aspect-ratio: 4 / 5;
-  border-radius: 12px;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-  font-size: 3rem;
-  line-height: 1;
-  background: #ffffff;
+  position: relative; height: 148px;
+  border-radius: 12px; overflow: hidden;
+  display: grid; place-items: center;
+  font-size: 3rem; line-height: 1;
+  background: linear-gradient(135deg, #eef8f0 0%, #f8fdfa 100%);
   flex-shrink: 0;
-  border: 1px solid #f0f5f1;
 }
 .card__media img{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 4px;
-  background: #ffffff;
-  display: block;
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
 }
-.card--feira .card__media{
-  aspect-ratio: 4 / 5;
-  font-size: 2.1rem;
-}
-.card--feira .card__media img{
-  padding: 3px;
-}
+.card--feira .card__media{ height: 92px; font-size: 2.1rem; }
 
 .card__info{ flex: 1; display: flex; flex-direction: column; }
 .card__title{
@@ -447,7 +428,7 @@ a{ color: inherit; text-decoration: none; }
 .btn-add:active{ transform: scale(.95); }
 
 .card--destaque{ border-color: #e8d9a8; background: linear-gradient(180deg, #fffdf6, #fff); }
-.card--destaque .card__media{ background: #ffffff; }
+.card--destaque .card__media{ background: linear-gradient(135deg, #f6e6f4, #fdf3fb); }
 .badge-tag{
   position: absolute; top: 12px; left: 12px; z-index: 2;
   background: var(--amarelo); color: #4a3200;
@@ -490,7 +471,7 @@ a{ color: inherit; text-decoration: none; }
   color: var(--verde-escuro);
 }
 
-/* SELEÇÃO */
+/* LISTA SELEÇÃO */
 .selecao{
   margin-top: 26px;
   background: #fff; border: 1px solid var(--borda);
@@ -533,17 +514,10 @@ a{ color: inherit; text-decoration: none; }
   width: 56px; height: 56px;
   border-radius: 11px; overflow: hidden;
   position: relative; display: grid; place-items: center;
-  background: #ffffff;
+  background: linear-gradient(135deg, #eef8f0, #f8fdfa);
   font-size: 1.7rem; flex-shrink: 0;
-  border: 1px solid #f0f5f1;
 }
-.sel-item__img img{ 
-  position: absolute; inset: 0; 
-  width: 100%; height: 100%; 
-  object-fit: contain; 
-  background: #fff; 
-  padding: 2px; 
-}
+.sel-item__img img{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .sel-item__info{ min-width: 0; }
 .sel-item__name{
   font-size: .93rem; font-weight: 700;
@@ -577,7 +551,7 @@ a{ color: inherit; text-decoration: none; }
   .sel-item__del{ display: none; }
 }
 
-/* BARRA */
+/* BARRA RESUMO */
 .feira-bar{
   position: sticky; bottom: 14px; z-index: 30;
   margin-top: 18px;
@@ -611,7 +585,7 @@ a{ color: inherit; text-decoration: none; }
   .feira-bar__actions .btn-clear{ width: 100%; }
 }
 
-/* ENTREGA */
+/* AVISO ENTREGA */
 .delivery-note{
   display: flex; align-items: flex-start; gap: 12px;
   margin-top: 20px; padding: 14px 16px;
@@ -683,18 +657,14 @@ a{ color: inherit; text-decoration: none; }
 }
 .citem__top{ display: flex; gap: 11px; }
 .citem__emoji{
-  width: 60px; height: 60px; border-radius: 12px;
+  width: 56px; height: 56px; border-radius: 12px;
   position: relative; overflow: hidden;
-  background: #ffffff; display: grid; place-items: center;
+  background: var(--verde-bg); display: grid; place-items: center;
   font-size: 1.6rem; flex-shrink: 0;
-  border: 1px solid #f0f5f1;
 }
 .citem__emoji img{
   position: absolute; inset: 0;
-  width: 100%; height: 100%; 
-  object-fit: contain;
-  background: #fff;
-  padding: 3px;
+  width: 100%; height: 100%; object-fit: cover;
   z-index: 2;
 }
 .citem__emoji span{ position: relative; z-index: 1; }
@@ -959,6 +929,9 @@ a{ color: inherit; text-decoration: none; }
   </div>
 </section>
 
+<!-- =========================================================
+     CARROSSEL DE PRODUTOS
+     ========================================================= -->
 <section class="carousel-section">
   <div class="container">
     <div class="carousel" id="carousel">
@@ -1015,7 +988,7 @@ a{ color: inherit; text-decoration: none; }
     <div class="sec-head">
       <span class="sec-head__eyebrow">Linha Alho</span>
       <h2>Alho Descascado</h2>
-      <p>Dentes inteiros, limpos e prontos para o preparo. Disponível em 4 tamanhos de pacote.</p>
+      <p>Dentes inteiros, higienizados e prontos para o consumo</p>
     </div>
     <div class="grid" id="gridDescascado"></div>
   </div>
@@ -1025,8 +998,8 @@ a{ color: inherit; text-decoration: none; }
   <div class="container">
     <div class="sec-head">
       <span class="sec-head__eyebrow">Linha Alho</span>
-      <h2>Alho Picado no Pote</h2>
-      <p>Picado na hora e conservado em pote. Praticidade total para o dia a dia.</p>
+      <h2>Alho Puro e Triturado</h2>
+      <p>Alho puro e triturado. Praticidade para o dia a dia.</p>
     </div>
     <div class="grid" id="gridPicado"></div>
   </div>
@@ -1101,7 +1074,7 @@ a{ color: inherit; text-decoration: none; }
       <p>
         <strong>Entrega realizada por serviços de terceiros</strong> como
         <strong>iFood</strong> e <strong>99</strong>. Após confirmar seu pedido
-        pelo WhatsApp, enviaremos o link do app para você finalizar a entrega
+        pelo WhatsApp, enviaremos o link do app para você rastrear a entrega
         com toda comodidade e segurança.
       </p>
     </div>
@@ -1113,7 +1086,7 @@ a{ color: inherit; text-decoration: none; }
     <div>
       <h4>🧄 Alho &amp; Feira</h4>
       <p>
-        Alho descascado, picado e roxo com qualidade, além de pacotes de feira
+        Alho descascado, triturado e roxo com qualidade, além de pacotes de feira
         montados do seu jeito. Frescor e praticidade na sua cozinha.
       </p>
     </div>
@@ -1121,7 +1094,7 @@ a{ color: inherit; text-decoration: none; }
       <h4>Produtos</h4>
       <ul>
         <li><a href="#alho-descascado">Alho Descascado</a></li>
-        <li><a href="#alho-picado">Alho Picado no Pote</a></li>
+        <li><a href="#alho-picado">Alho Triturado</a></li>
         <li><a href="#alho-roxo">Alho Roxo</a></li>
         <li><a href="#feira">Pacotes de Feira</a></li>
       </ul>
@@ -1130,13 +1103,13 @@ a{ color: inherit; text-decoration: none; }
       <h4>Pedidos &amp; Entrega</h4>
       <ul>
         <li>
-          <a href="https://wa.me/5511989321702" target="_blank" rel="noopener"
+          <a href="https://wa.me/5511994783584" target="_blank" rel="noopener"
              style="display:inline-flex; align-items:center; gap:8px;">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="#25D366"
                  aria-hidden="true" style="flex-shrink:0;">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 0 1 6.988 2.898 9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
             </svg>
-            WhatsApp: (11) 98932-1702
+            WhatsApp: (11) 99478-3584
           </a>
         </li>
         <li>🧺 Feira: Pedidos — até as 21h do Sábado</li>
@@ -1244,7 +1217,7 @@ a{ color: inherit; text-decoration: none; }
       Finalizar pedido no WhatsApp
     </button>
     <small>
-      Você será redirecionado para o WhatsApp (11) 98932-1702.<br>
+      Você será redirecionado para o WhatsApp (11) 99478-3584.<br>
       📦 Entrega via iFood, 99 e apps parceiros.
     </small>
   </div>
@@ -1269,21 +1242,22 @@ a{ color: inherit; text-decoration: none; }
 
 <div class="toast" id="toast"></div>
 <script>
-/* CONFIG */
+/* =========================================================
+   CONFIGURAÇÕES
+   ========================================================= */
 const CONFIG = {
-  whatsapp: '5511989321702',
+  whatsapp: '5511994783584',
   feira: { precoItem: 4.50 },
   modalSegundos: 5
 };
 
-/* ⚠️ ATENÇÃO: NOMES ORIGINAIS DOS ARQUIVOS!
-   Não renomeie os arquivos — use exatamente como estão no servidor */
+/* IMAGENS */
 const IMG = {
-  'desc-250': './d.alho.webp',
+  'desc-250': '/d.alho.webp',
   'desc-500': './d.alho.webp',
   'desc-1k':  './d.alho.webp',
   'desc-2k':  './d.alho.webp',
-  'pic-250':  './triturado.webp',
+  'pic-250':  './triturado.webp',   // Garanta que o arquivo exista com esse nome
   'pic-500':  './triturado.webp',
   'pic-1k':   './triturado.webp',
   'roxo-5':   './alho.roxo.webp',
@@ -1308,16 +1282,16 @@ const IMG = {
 };
 
 const PRODUTOS = [
-  { id:'desc-250', cat:'descascado', nome:'Alho Descascado', peso:'250g', preco:9.90,  emoji:'🧄' },
-  { id:'desc-500', cat:'descascado', nome:'Alho Descascado', peso:'500g', preco:18.90, emoji:'🧄', tag:'Mais vendido',          tagTipo:'vendido'  },
-  { id:'desc-1k',  cat:'descascado', nome:'Alho Descascado', peso:'1kg',  preco:33.00, emoji:'🧄', tag:'Melhor custo-benefício', tagTipo:'custo'    },
-  { id:'desc-2k',  cat:'descascado', nome:'Alho Descascado', peso:'2kg',  preco:63.90, emoji:'🧄', tag:'Economize R$ 2,10',     tagTipo:'economia' },
+  { id:'desc-250', cat:'descascado', nome:'Alho Descascado', peso:'250g', preco:10.00,  emoji:'🧄' },
+  { id:'desc-500', cat:'descascado', nome:'Alho Descascado', peso:'500g', preco:17.00, emoji:'🧄', tag:'Mais vendido',          tagTipo:'vendido'  },
+  { id:'desc-1k',  cat:'descascado', nome:'Alho Descascado', peso:'1kg',  preco:33.00, emoji:'🧄'},
+  { id:'desc-2k',  cat:'descascado', nome:'Alho Descascado', peso:'2kg',  preco:66.00, emoji:'🧄'},
 
-  { id:'pic-250', cat:'picado', nome:'Alho Picado no Pote', peso:'250g', preco:17.00, emoji:'🫙' },
-  { id:'pic-500', cat:'picado', nome:'Alho Picado no Pote', peso:'500g', preco:32.90, emoji:'🫙', tag:'Mais vendido',          tagTipo:'vendido' },
-  { id:'pic-1k',  cat:'picado', nome:'Alho Picado no Pote', peso:'1kg',  preco:62.90, emoji:'🫙', tag:'Melhor custo-benefício', tagTipo:'custo'   },
+  { id:'pic-250', cat:'picado', nome:'Alho Triturado', peso:'250g', preco:17.00, emoji:'🫙' },
+  { id:'pic-500', cat:'picado', nome:'Alho Triturado', peso:'500g', preco:34.00, emoji:'🫙', tag:'Mais vendido',          tagTipo:'vendido' },
+  { id:'pic-1k',  cat:'picado', nome:'Alho Triturado', peso:'1kg',  preco:68.00, emoji:'🫙'},
 
-  { id:'roxo-5', cat:'roxo', nome:'Alho Roxo', peso:'5 cabeças', preco:15.00, emoji:'🧄', destaque:true, destaquePeso:true }
+  { id:'roxo-5', cat:'roxo', nome:'Alho Roxo', peso:'5 cabeças', preco:12.00, emoji:'🧄', destaque:true, destaquePeso:true }
 ];
 
 const HORTIFRUTI = [
@@ -1368,11 +1342,13 @@ function animarBadge(){
   });
 }
 function htmlImagem(src, alt, emoji){
-  const imgTag = src ? `<img src="${src}" alt="${alt}" loading="lazy" onerror="this.style.opacity='0';">` : '';
+  const imgTag = src ? `<img src="${src}" alt="${alt}" loading="lazy" onerror="this.remove();">` : '';
   return `<span aria-hidden="true">${emoji || '📦'}</span>${imgTag}`;
 }
 
-/* CARROSSEL */
+/* =========================================================
+   CARROSSEL
+   ========================================================= */
 (function initCarousel(){
   const track   = $('#carouselTrack');
   const slides  = track.querySelectorAll('.carousel__slide');
@@ -1432,6 +1408,7 @@ function htmlImagem(src, alt, emoji){
   track.addEventListener('touchstart', (e) => onStart(e.touches[0].clientX), { passive: true });
   track.addEventListener('touchmove',  (e) => onMove(e.touches[0].clientX),  { passive: true });
   track.addEventListener('touchend', onEnd);
+
   track.addEventListener('mousedown', (e) => { e.preventDefault(); onStart(e.clientX); });
   window.addEventListener('mousemove', (e) => onMove(e.clientX));
   window.addEventListener('mouseup', onEnd);
@@ -1441,6 +1418,7 @@ function htmlImagem(src, alt, emoji){
     if (e.key === 'ArrowRight') goTo(current + 1);
   });
 
+  /* bloqueia clique depois de arrastar */
   slides.forEach(slide => {
     const link = slide.querySelector('a');
     if (link){
@@ -1453,7 +1431,9 @@ function htmlImagem(src, alt, emoji){
   goTo(0);
 })();
 
-/* PRODUTOS */
+/* =========================================================
+   RENDER PRODUTOS
+   ========================================================= */
 function cardProduto(p){
   const tagHTML = p.tag ? `<span class="card__tag card__tag--${p.tagTipo}">${p.tag}</span>` : '';
   const pesoClass = p.destaquePeso ? 'card__peso card__peso--roxo' : 'card__peso';
@@ -1482,7 +1462,9 @@ function renderProdutos(){
   monta('roxo',       '#gridRoxo');
 }
 
-/* FEIRA */
+/* =========================================================
+   FEIRA
+   ========================================================= */
 function renderFeira(){
   const grid = $('#feiraGrid');
   grid.innerHTML = HORTIFRUTI.map(h => `
@@ -1567,7 +1549,9 @@ function atualizarResumoFeira(){
   renderFeiraLista();
 }
 
-/* CARRINHO */
+/* =========================================================
+   CARRINHO
+   ========================================================= */
 function adicionarAoCarrinho(produto, qtd = 1){
   const existente = carrinho.find(i => i.id === produto.id);
   if (existente) existente.qtd += qtd;
@@ -1641,7 +1625,9 @@ function renderCarrinho(){
   $('#fabBadge').textContent  = qtd;
 }
 
-/* ABRIR / FECHAR */
+/* =========================================================
+   ABRIR / FECHAR CARRINHO
+   ========================================================= */
 function abrirCarrinho(){
   $('#cart').classList.add('open');
   $('#overlay').classList.add('open');
@@ -1653,7 +1639,9 @@ function fecharCarrinho(){
   document.body.classList.remove('no-scroll');
 }
 
-/* EVENTOS */
+/* =========================================================
+   EVENTOS GLOBAIS
+   ========================================================= */
 document.addEventListener('click', (e) => {
   const btnAdd = e.target.closest('[data-add]');
   if (btnAdd){
@@ -1689,7 +1677,9 @@ document.addEventListener('click', (e) => {
   }
 });
 
-/* ADICIONAR FEIRA */
+/* =========================================================
+   ADICIONAR FEIRA AO CARRINHO
+   ========================================================= */
 $('#feiraAdd').addEventListener('click', () => {
   const selecionados = Object.entries(feiraSelecao).filter(([, q]) => q > 0);
   if (!selecionados.length){ toast('Selecione pelo menos um item da feira'); return; }
@@ -1719,7 +1709,9 @@ $('#feiraAdd').addEventListener('click', () => {
   setTimeout(abrirCarrinho, 250);
 });
 
-/* LIMPAR */
+/* =========================================================
+   LIMPAR
+   ========================================================= */
 $('#feiraLimpar').addEventListener('click', () => {
   feiraSelecao = {};
   atualizarResumoFeira();
@@ -1734,7 +1726,9 @@ $('#cartClear').addEventListener('click', () => {
   }
 });
 
-/* MÁSCARA FONE */
+/* =========================================================
+   MÁSCARAS
+   ========================================================= */
 $('#fone').addEventListener('input', (e) => {
   let v = e.target.value.replace(/\D/g, '').slice(0, 11);
   if (v.length > 10)      v = v.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
@@ -1745,7 +1739,9 @@ $('#fone').addEventListener('input', (e) => {
   e.target.classList.remove('invalid');
 });
 
-/* CEP */
+/* =========================================================
+   CEP + VIACEP
+   ========================================================= */
 let cepFetchToken = 0;
 $('#cep').addEventListener('input', (e) => {
   let v = e.target.value.replace(/\D/g, '').slice(0, 8);
@@ -1798,6 +1794,7 @@ async function buscarCep(cep){
   }
 }
 
+/* CHECKBOX SEM NÚMERO */
 $('#semNumero').addEventListener('change', (e) => {
   const numEl = $('#numero');
   if (e.target.checked){
@@ -1810,11 +1807,14 @@ $('#semNumero').addEventListener('change', (e) => {
   }
 });
 
+/* REMOVER .invalid AO DIGITAR */
 document.querySelectorAll('.field input, .field textarea').forEach(el => {
   el.addEventListener('input', () => el.classList.remove('invalid'));
 });
 
-/* MODAL */
+/* =========================================================
+   MODAL DE CONFIRMAÇÃO
+   ========================================================= */
 function abrirModal(url){
   modalUrl = url;
   $('#modalConfirm').classList.add('open');
@@ -1880,7 +1880,12 @@ $('#modalConfirm').addEventListener('click', (e) => {
   if (e.target === $('#modalConfirm')) fecharModal();
 });
 
-/* FINALIZAR */
+/* =========================================================
+   FINALIZAR → MONTA MENSAGEM
+   ========================================================= */
+/* =========================================================
+   FINALIZAR → MONTA MENSAGEM
+   ========================================================= */
 $('#btnWhats').addEventListener('click', () => {
   if (!carrinho.length){ toast('Seu carrinho está vazio! 🛒'); return; }
 
@@ -1925,6 +1930,7 @@ $('#btnWhats').addEventListener('click', () => {
   const total = totalCarrinho();
   const L = [];
 
+  // ALERTA MOVIDO PARA O TOPO, EM MAIÚSCULO E NEGRITO
   L.push('*ATENÇÃO: PARA CONFIRMAR O SEU PEDIDO, É PRECISO CLICAR NO BOTÃO ENVIAR AQUI NO WHATSAPP. SEM A SUA AÇÃO, A MENSAGEM NÃO CHEGARÁ ATÉ NÓS.*');
   L.push('');
   L.push('*NOVO PEDIDO - ALHO & FEIRA*');
@@ -1940,7 +1946,7 @@ $('#btnWhats').addEventListener('click', () => {
   carrinho.forEach((item) => {
     const subtotal = item.preco * item.qtd;
     const desc = item.desc ? ` (${boldPesoWpp(item.desc)})` : '';
-    L.push(`✅ ${item.nome}${desc}`);
+    L.push(`* ${item.nome}${desc}`);
     L.push(`   ${item.qtd}x ${moeda(item.preco)} = *${moeda(subtotal)}*`);
     L.push('');
   });
@@ -1961,7 +1967,9 @@ $('#btnWhats').addEventListener('click', () => {
   abrirModal(url);
 });
 
-/* ESC / INIT */
+/* =========================================================
+   ESC / INIT
+   ========================================================= */
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape'){
     if ($('#modalConfirm').classList.contains('open')) fecharModal();
