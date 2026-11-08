@@ -6,9 +6,10 @@
 <meta name="theme-color" content="#125a2b">
 <title>Alho & Feira — Alho fresquinho e feira completa na sua porta</title>
 
+<!-- Open Graph -->
 <meta property="og:title" content="🧄 Alho & Feira — Alho fresquinho e feira completa">
 <meta property="og:description" content="Alho Roxo em cabeça, triturado e descascado + hortifrúti selecionado.">
-<meta property="og:image" content="https://alho.site/alr.jpeg">
+<meta property="og:image" content="https://alho.site/fcaf.png">
 <meta property="og:image:width" content="720">
 <meta property="og:image:height" content="720">
 <meta property="og:url" content="https://alho.site/">
@@ -19,8 +20,8 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="🧄 Alho & Feira — Alho fresquinho e feira completa">
-<meta name="twitter:description" content="Alho triturado, Alho roxo + hortifrúti selecionado.">
-<meta name="twitter:image" content="https://alho.site/alr.jpeg">
+<meta name="twitter:description" content="Alho Roxo em cabeça, triturado e descascado + hortifrúti selecionado.">
+<meta name="twitter:image" content="https://alho.site/fcaf.png">
 
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,6 +49,27 @@ button{ cursor: pointer; border: none; background: none; }
 a{ color: inherit; text-decoration: none; }
 
 .container{ width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 18px; }
+
+/* LETREIRO */
+.letreiro{ overflow: hidden; background: var(--verde); color: #fff; padding: 10px 0; }
+.letreiro__track{
+  display: flex; width: max-content;
+  animation: letreiroScroll 32s linear infinite;
+}
+.letreiro:hover .letreiro__track{ animation-play-state: paused; }
+.letreiro__group{
+  display: flex; gap: 40px; padding-right: 40px;
+  flex-shrink: 0; font-size: .88rem; font-weight: 700;
+}
+.letreiro__group span{ white-space: nowrap; }
+@keyframes letreiroScroll{
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce){
+  .letreiro__track{ animation: none; }
+  .letreiro{ overflow-x: auto; }
+}
 
 /* HEADER */
 .header{
@@ -95,7 +117,61 @@ a{ color: inherit; text-decoration: none; }
 }
 .cart-badge.pop{ animation: pop .35s ease; }
 @keyframes pop{ 0%{transform:scale(1)} 45%{transform:scale(1.45)} 100%{transform:scale(1)} }
-@media (max-width: 900px){ .nav{ display: none; } }
+
+/* ===============================
+   MENU MOBILE HORIZONTAL (SEM ANIMAÇÃO)
+   =============================== */
+.marquee-nav{
+  display: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: var(--verde-bg);
+  border-top: 1px solid var(--borda);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+.marquee-nav::-webkit-scrollbar{ display: none; }
+
+@media (max-width: 900px){
+  .marquee-nav{ display: block; }
+  .nav{ display: none; }
+}
+
+.marquee-nav__track{
+  display: flex;
+  gap: 10px;
+  padding: 8px 18px;
+  width: max-content;
+}
+.marquee-nav__group{
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.marquee-nav__group a{
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--verde-escuro);
+  background: #fff;
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+  padding: 6px 14px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-decoration: none;
+  transition: background .2s, color .2s, transform .12s;
+}
+.marquee-nav__group a:active{ transform: scale(.96); }
+@media (hover: hover){
+  .marquee-nav__group a:hover{
+    background: var(--verde);
+    color: #fff;
+    border-color: var(--verde);
+  }
+}
 
 /* HERO */
 .hero{
@@ -168,82 +244,76 @@ a{ color: inherit; text-decoration: none; }
   .hero__art{ order: -1; font-size: clamp(5rem, 30vw, 8rem); }
 }
 
+/* BANNER */
+.promo-banner{ padding: 40px 0 8px; }
+.promo-banner__link{
+  display: block; border-radius: 20px; overflow: hidden;
+  box-shadow: var(--sombra-lg);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+@media (hover: hover){
+  .promo-banner__link:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 22px 48px rgba(18,90,43,.22);
+  }
+}
+.promo-banner__img{ display: block; width: 100%; height: auto; }
+@media (max-width: 640px){
+  .promo-banner{ padding: 24px 0 8px; }
+  .promo-banner__link{ border-radius: 14px; }
+}
+
 /* CARROSSEL */
 .carousel-section{ padding: 44px 0 20px; }
 .carousel{
-  position: relative;
-  width: 100%;
-  max-width: 620px;
-  margin: 0 auto;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: var(--sombra-lg);
-  background: var(--verde-bg);
+  position: relative; width: 100%; max-width: 620px;
+  margin: 0 auto; border-radius: 20px; overflow: hidden;
+  box-shadow: var(--sombra-lg); background: var(--verde-bg);
   touch-action: pan-y;
 }
 .carousel__track{
-  display: flex;
-  transition: transform .45s cubic-bezier(.4,0,.2,1);
+  display: flex; transition: transform .45s cubic-bezier(.4,0,.2,1);
   will-change: transform;
 }
 .carousel__slide{
-  flex: 0 0 100%;
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
+  flex: 0 0 100%; position: relative;
+  aspect-ratio: 4 / 3; overflow: hidden;
 }
 .carousel__slide .gallery__item{
-  position: absolute;
-  inset: 0;
-  border-radius: 0;
-  box-shadow: none;
+  position: absolute; inset: 0; border-radius: 0; box-shadow: none;
 }
 @media (min-width: 700px){
   .carousel__slide{ aspect-ratio: 16 / 9; }
 }
 .carousel__nav{
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 46px; height: 46px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.94);
-  color: var(--verde-escuro);
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 46px; height: 46px; border-radius: 50%;
+  background: rgba(255,255,255,.94); color: var(--verde-escuro);
   display: grid; place-items: center;
   box-shadow: 0 6px 18px rgba(0,0,0,.22);
-  z-index: 5;
-  transition: background .2s, transform .15s;
-  font-size: 1.9rem;
-  line-height: 1;
-  padding-bottom: 4px;
-  font-weight: 700;
+  z-index: 5; transition: background .2s, transform .15s;
+  font-size: 1.9rem; line-height: 1; padding-bottom: 4px; font-weight: 700;
 }
 .carousel__nav:hover{ background: #fff; }
 .carousel__nav:active{ transform: translateY(-50%) scale(.92); }
 .carousel__nav--prev{ left: 12px; }
 .carousel__nav--next{ right: 12px; }
 .carousel__nav:disabled{ opacity: .35; cursor: not-allowed; }
-
 .carousel__dots{
-  position: absolute;
-  bottom: 14px; left: 50%;
+  position: absolute; bottom: 14px; left: 50%;
   transform: translateX(-50%);
-  display: flex; gap: 8px;
-  z-index: 5;
+  display: flex; gap: 8px; z-index: 5;
   padding: 6px 10px;
-  background: rgba(0,0,0,.18);
-  border-radius: 999px;
+  background: rgba(0,0,0,.18); border-radius: 999px;
   backdrop-filter: blur(6px);
 }
 .carousel__dot{
-  width: 9px; height: 9px;
-  border-radius: 50%;
+  width: 9px; height: 9px; border-radius: 50%;
   background: rgba(255,255,255,.55);
   transition: background .25s, transform .25s;
   padding: 0; border: none;
 }
 .carousel__dot.is-active{ background: #fff; transform: scale(1.35); }
-
 @media (max-width: 520px){
   .carousel__nav{ width: 38px; height: 38px; font-size: 1.5rem; }
   .carousel__nav--prev{ left: 8px; }
@@ -257,24 +327,19 @@ a{ color: inherit; text-decoration: none; }
   overflow: hidden; background: var(--verde-bg);
 }
 .gallery__item img{
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
+  width: 100%; height: 100%; object-fit: cover; display: block;
 }
 .gallery__item::after{
-  content: '';
-  position: absolute; inset: 0;
+  content: ''; position: absolute; inset: 0;
   background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.72) 100%);
   pointer-events: none;
 }
 .gallery__caption{
-  position: absolute;
-  left: 22px; right: 22px; bottom: 22px;
-  z-index: 2; color: #fff;
-  text-shadow: 0 2px 8px rgba(0,0,0,.5);
+  position: absolute; left: 22px; right: 22px; bottom: 22px;
+  z-index: 2; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.5);
 }
 .gallery__caption strong{
-  display: block;
-  font-size: 1.25rem; font-weight: 800;
+  display: block; font-size: 1.25rem; font-weight: 800;
   letter-spacing: -.01em; margin-bottom: 3px;
 }
 .gallery__caption span{ font-size: .88rem; opacity: .92; font-weight: 500; }
@@ -316,26 +381,19 @@ a{ color: inherit; text-decoration: none; }
 }
 .sec-head p{ color: var(--texto-2); font-size: .96rem; }
 
-/* BANNER FEIRA */
 .feira-banner-wrap { text-align: center; margin-bottom: 26px; }
 .feira-banner {
-  max-width: 100%;
-  width: 620px;
-  border-radius: 16px;
-  box-shadow: var(--sombra);
-  margin: 0 auto;
-  display: block;
+  max-width: 100%; width: 620px;
+  border-radius: 16px; box-shadow: var(--sombra);
+  margin: 0 auto; display: block;
 }
 
-/* AVISO */
 .deadline-note{
   display: flex; align-items: flex-start; gap: 14px;
   margin-bottom: 22px; padding: 16px 18px;
   background: linear-gradient(135deg, #fef3c7 0%, #fef9e7 100%);
-  border: 1.5px solid #f4d35e;
-  border-radius: 14px;
-  font-size: .9rem; color: #5c4400;
-  line-height: 1.55;
+  border: 1.5px solid #f4d35e; border-radius: 14px;
+  font-size: .9rem; color: #5c4400; line-height: 1.55;
   box-shadow: 0 6px 18px rgba(244, 211, 94, .18);
 }
 .deadline-note__icon{ font-size: 1.7rem; flex-shrink: 0; line-height: 1; margin-top: 1px; }
@@ -353,10 +411,9 @@ a{ color: inherit; text-decoration: none; }
 
 /* CARD */
 .card{
-  position: relative;
-  background: #fff; border: 1px solid var(--borda);
-  border-radius: var(--radius); padding: 14px;
-  display: flex; flex-direction: column; gap: 12px;
+  position: relative; background: #fff;
+  border: 1px solid var(--borda); border-radius: var(--radius);
+  padding: 14px; display: flex; flex-direction: column; gap: 12px;
   box-shadow: var(--sombra);
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s;
 }
@@ -364,38 +421,22 @@ a{ color: inherit; text-decoration: none; }
   transform: translateY(-4px);
   box-shadow: var(--sombra-lg); border-color: #cfe8d8;
 }
-
-/* IMAGEM DO CARD */
 .card__media{
-  position: relative;
-  aspect-ratio: 4 / 5;
-  border-radius: 12px;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-  font-size: 3rem;
-  line-height: 1;
-  background: #ffffff;
-  flex-shrink: 0;
+  position: relative; aspect-ratio: 4 / 5;
+  border-radius: 12px; overflow: hidden;
+  display: grid; place-items: center;
+  font-size: 3rem; line-height: 1;
+  background: #ffffff; flex-shrink: 0;
   border: 1px solid #f0f5f1;
 }
 .card__media img{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 4px;
-  background: #ffffff;
-  display: block;
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain; padding: 4px;
+  background: #ffffff; display: block;
 }
-.card--feira .card__media{
-  aspect-ratio: 4 / 5;
-  font-size: 2.1rem;
-}
-.card--feira .card__media img{
-  padding: 3px;
-}
+.card--feira .card__media{ aspect-ratio: 4 / 5; font-size: 2.1rem; }
+.card--feira .card__media img{ padding: 3px; }
 
 .card__info{ flex: 1; display: flex; flex-direction: column; }
 .card__title{
@@ -424,8 +465,7 @@ a{ color: inherit; text-decoration: none; }
 
 .card__foot{
   display: flex; align-items: center; justify-content: space-between;
-  gap: 10px; margin-top: auto;
-  padding-top: 10px;
+  gap: 10px; margin-top: auto; padding-top: 10px;
   border-top: 1px dashed var(--borda);
 }
 .price{
@@ -451,7 +491,6 @@ a{ color: inherit; text-decoration: none; }
   padding: 4px 9px; border-radius: 999px;
 }
 
-/* CARD FEIRA */
 .card--feira{ padding: 10px; gap: 8px; text-align: center; }
 .card--feira .card__title{
   font-size: .86rem; margin-bottom: 0;
@@ -487,10 +526,9 @@ a{ color: inherit; text-decoration: none; }
 
 /* SELEÇÃO */
 .selecao{
-  margin-top: 26px;
-  background: #fff; border: 1px solid var(--borda);
-  border-radius: 18px; overflow: hidden;
-  box-shadow: var(--sombra);
+  margin-top: 26px; background: #fff;
+  border: 1px solid var(--borda); border-radius: 18px;
+  overflow: hidden; box-shadow: var(--sombra);
 }
 .selecao__head{
   display: flex; align-items: center; justify-content: space-between;
@@ -510,12 +548,10 @@ a{ color: inherit; text-decoration: none; }
 .sel-empty span{ display: block; font-size: 2rem; margin-bottom: 8px; opacity: .55; }
 
 .sel-item{
-  display: grid;
-  grid-template-columns: 56px 1fr auto auto;
+  display: grid; grid-template-columns: 56px 1fr auto auto;
   align-items: center; gap: 12px;
   padding: 10px 12px; border-radius: 12px;
-  transition: background .18s;
-  animation: fadeUp .25s ease;
+  transition: background .18s; animation: fadeUp .25s ease;
 }
 .sel-item:hover{ background: #f6fbf8; }
 .sel-item + .sel-item{ border-top: 1px solid #f0f5f1; }
@@ -523,28 +559,24 @@ a{ color: inherit; text-decoration: none; }
   from{ opacity: 0; transform: translateY(6px); }
   to{ opacity: 1; transform: none; }
 }
-
 .sel-item__img{
-  width: 56px; height: 56px;
-  border-radius: 11px; overflow: hidden;
-  position: relative; display: grid; place-items: center;
-  background: #ffffff;
-  font-size: 1.7rem; flex-shrink: 0;
-  border: 1px solid #f0f5f1;
+  width: 56px; height: 56px; border-radius: 11px;
+  overflow: hidden; position: relative;
+  display: grid; place-items: center;
+  background: #ffffff; font-size: 1.7rem;
+  flex-shrink: 0; border: 1px solid #f0f5f1;
 }
-.sel-item__img img{ 
-  position: absolute; inset: 0; 
-  width: 100%; height: 100%; 
-  object-fit: contain; 
-  background: #fff; 
-  padding: 2px; 
+.sel-item__img img{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain; background: #fff; padding: 2px;
 }
 .sel-item__info{ min-width: 0; }
 .sel-item__name{
   font-size: .93rem; font-weight: 700;
   letter-spacing: -.01em; color: var(--texto);
-  margin-bottom: 2px;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin-bottom: 2px; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
 }
 .sel-item__unit{ font-size: .76rem; color: var(--texto-2); }
 .sel-item__unit strong{ color: var(--verde-escuro); }
@@ -572,14 +604,14 @@ a{ color: inherit; text-decoration: none; }
   .sel-item__del{ display: none; }
 }
 
-/* BARRA */
+/* BARRA RESUMO */
 .feira-bar{
   position: sticky; bottom: 14px; z-index: 30;
   margin-top: 18px;
   display: flex; align-items: center; justify-content: space-between;
-  gap: 16px;
-  background: #fff; border: 1px solid var(--borda);
-  border-radius: 18px; padding: 14px 18px;
+  gap: 16px; background: #fff;
+  border: 1px solid var(--borda); border-radius: 18px;
+  padding: 14px 18px;
   box-shadow: 0 14px 34px rgba(18,90,43,.16);
 }
 .feira-bar__info{ display: flex; flex-direction: column; gap: 2px; min-width: 0; }
@@ -606,7 +638,6 @@ a{ color: inherit; text-decoration: none; }
   .feira-bar__actions .btn-clear{ width: 100%; }
 }
 
-/* ENTREGA */
 .delivery-note{
   display: flex; align-items: flex-start; gap: 12px;
   margin-top: 20px; padding: 14px 16px;
@@ -617,7 +648,7 @@ a{ color: inherit; text-decoration: none; }
 .delivery-note__icon{ font-size: 1.4rem; flex-shrink: 0; line-height: 1; }
 .delivery-note strong{ color: var(--verde-escuro); }
 
-/* OVERLAY / CARRINHO */
+/* CARRINHO */
 .overlay{
   position: fixed; inset: 0;
   background: rgba(10,30,18,.5);
@@ -686,11 +717,9 @@ a{ color: inherit; text-decoration: none; }
 }
 .citem__emoji img{
   position: absolute; inset: 0;
-  width: 100%; height: 100%; 
-  object-fit: contain;
-  background: #fff;
-  padding: 3px;
-  z-index: 2;
+  width: 100%; height: 100%;
+  object-fit: contain; background: #fff;
+  padding: 3px; z-index: 2;
 }
 .citem__emoji span{ position: relative; z-index: 1; }
 .citem__main{ flex: 1; min-width: 0; }
@@ -742,20 +771,16 @@ a{ color: inherit; text-decoration: none; }
 .field input.invalid{ border-color: #e0574a; box-shadow: 0 0 0 3px rgba(224,87,74,.12); }
 
 .field-row{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 12px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 12px;
 }
 .field-row .field{ margin-bottom: 0; }
 
 .checkbox-wrap{
   display: flex; align-items: center; gap: 8px;
   padding: 12px 13px;
-  border: 1.5px solid var(--borda);
-  border-radius: 11px;
-  background: #fff;
-  cursor: pointer;
+  border: 1.5px solid var(--borda); border-radius: 11px;
+  background: #fff; cursor: pointer;
   font-size: .88rem; font-weight: 600;
   color: var(--texto-2); height: 100%;
   transition: border-color .2s, background .2s;
@@ -850,16 +875,13 @@ a{ color: inherit; text-decoration: none; }
   background: rgba(10,30,18,.6);
   backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
   display: grid; place-items: center;
-  z-index: 300;
-  opacity: 0; visibility: hidden;
+  z-index: 300; opacity: 0; visibility: hidden;
   transition: opacity .25s, visibility .25s;
   padding: 20px;
 }
 .modal-overlay.open{ opacity: 1; visibility: visible; }
-
 .modal{
-  background: #fff;
-  border-radius: 22px;
+  background: #fff; border-radius: 22px;
   padding: 28px 22px 22px;
   max-width: 400px; width: 100%;
   text-align: center;
@@ -868,7 +890,6 @@ a{ color: inherit; text-decoration: none; }
   transition: transform .3s cubic-bezier(.34,1.3,.64,1);
 }
 .modal-overlay.open .modal{ transform: scale(1) translateY(0); }
-
 .modal__icon{ font-size: 3rem; margin-bottom: 6px; display: block; line-height: 1; }
 .modal h3{ font-size: 1.22rem; margin-bottom: 8px; letter-spacing: -.02em; color: var(--texto); }
 .modal__desc{
@@ -879,10 +900,8 @@ a{ color: inherit; text-decoration: none; }
 
 .countdown{
   display: inline-flex; align-items: center; justify-content: center;
-  width: 70px; height: 70px;
-  border-radius: 50%;
-  background: var(--verde-bg);
-  color: var(--verde-escuro);
+  width: 70px; height: 70px; border-radius: 50%;
+  background: var(--verde-bg); color: var(--verde-escuro);
   font-size: 1.9rem; font-weight: 800;
   margin: 4px auto 8px;
   border: 3px solid var(--verde-2);
@@ -911,6 +930,8 @@ a{ color: inherit; text-decoration: none; }
 </head>
 <body id="top">
 
+<!-- LETREIRO -->
+
 <header class="header">
   <div class="container header__inner">
     <a href="#top" class="logo">
@@ -918,10 +939,10 @@ a{ color: inherit; text-decoration: none; }
       <span>Alho<strong>&Feira</strong></span>
     </a>
     <nav class="nav">
-      <a href="#alho-descascado">Alho Descascado</a>
-      <a href="#alho-picado">Alho Triturado</a>
       <a href="#alho-roxo">Alho Roxo</a>
-      <a href="#feira">Pacotes de Feira</a>
+      <a href="#alho-descascado">Alho Descascado</a>
+      <a href="#alho-triturado">Alho Triturado</a>
+      <a href="#feira">Feira</a>
     </nav>
     <button class="cart-btn" id="cartBtn" aria-label="Abrir carrinho">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -933,15 +954,27 @@ a{ color: inherit; text-decoration: none; }
       <span class="cart-badge" id="cartBadge">0</span>
     </button>
   </div>
+
+  <!-- Menu mobile horizontal (rolável, sem animação) -->
+  <div class="marquee-nav" aria-label="Navegação mobile">
+    <div class="marquee-nav__track">
+      <div class="marquee-nav__group">
+        <a href="#alho-roxo">Alho Roxo</a>
+        <a href="#alho-descascado">Alho Descascado</a>
+        <a href="#alho-triturado">Alho Triturado</a>
+        <a href="#feira">Feira</a>
+      </div>
+    </div>
+  </div>
 </header>
 
 <section class="hero">
   <div class="container hero__inner">
     <div class="hero__content">
-      <span class="tag">Entrega por iFood, 99 e apps parceiros</span>
+      <span class="tag">📦 Entrega por iFood, 99 e apps parceiros</span>
       <h1>Alho fresquinho e <em>feira completa</em> direto na sua porta</h1>
       <p>
-        Alho descascado, picado e roxo prontos para usar — além da feirinha
+        Alho roxo em cabeça, triturado e descascado — além da feirinha
         com hortifrúti fresquinho a <strong>R$ 4,50 por item</strong>. Monte
         seu pedido e finalize em segundos pelo WhatsApp.
       </p>
@@ -954,6 +987,17 @@ a{ color: inherit; text-decoration: none; }
   </div>
 </section>
 
+<!-- BANNER -->
+<section class="promo-banner">
+  <div class="container">
+    <a href="#feira" class="promo-banner__link" aria-label="Confira os pacotes de feira">
+      <img src="./fcaf.png" alt="Promoção Alho & Feira" class="promo-banner__img" loading="lazy"
+           onerror="this.style.display='none';">
+    </a>
+  </div>
+</section>
+
+<!-- CARROSSEL -->
 <section class="carousel-section">
   <div class="container">
     <div class="carousel" id="carousel">
@@ -969,18 +1013,18 @@ a{ color: inherit; text-decoration: none; }
           </a>
         </div>
         <div class="carousel__slide">
-          <a href="#alho-picado" class="gallery__item">
-            <img src="./triturado.webp" alt="Alho Puro e Triturado" loading="lazy"
+          <a href="#alho-triturado" class="gallery__item">
+            <img src="./triturado.webp" alt="Alho Triturado" loading="lazy"
                  onerror="this.style.display='none';">
             <div class="gallery__caption">
-              <strong>Alho Puro e Triturado</strong>
+              <strong>Alho Triturado</strong>
               <span>Praticidade total no dia a dia</span>
             </div>
           </a>
         </div>
         <div class="carousel__slide">
           <a href="#alho-roxo" class="gallery__item">
-            <img src="./alho.roxo.webp" alt="Alho Roxo" loading="lazy"
+            <img src="./alr.jpeg" alt="Alho Roxo" loading="lazy"
                  onerror="this.style.display='none';">
             <div class="gallery__caption">
               <strong>Alho Roxo</strong>
@@ -1010,20 +1054,22 @@ a{ color: inherit; text-decoration: none; }
     <div class="sec-head">
       <span class="sec-head__eyebrow">Linha Alho</span>
       <h2>Alho Descascado</h2>
-      <p>Dentes inteiros, higienizados e prontos para o consumo.</p>
+      <b>Feito sob encomenda e descascado na hora. O frescor que só o preparo exclusivo oferece.</b>
+      <b>Dentes inteiros, selecionados e higienizados um a um.</b>
     </div>
     <div class="grid" id="gridDescascado"></div>
   </div>
 </section>
 
-<section class="section section--alt" id="alho-picado">
+<section class="section section--alt" id="alho-triturado">
   <div class="container">
     <div class="sec-head">
       <span class="sec-head__eyebrow">Linha Alho</span>
-      <h2>Alho Puro e Triturado</h2>
-      <p>Alho puro e triturado. Praticidade para o dia a dia.</p>
+      <h2>Alho Triturado</h2>
+      <b>Feito sob encomenda e triturado na hora. Alho puro, fresco e exclusivo para você.</b>
+      <b>No pote, pronto para temperar. Praticidade e sabor no dia a dia.</b>
     </div>
-    <div class="grid" id="gridPicado"></div>
+    <div class="grid" id="gridTriturado"></div>
   </div>
 </section>
 
@@ -1032,7 +1078,7 @@ a{ color: inherit; text-decoration: none; }
     <div class="sec-head">
       <span class="sec-head__eyebrow">Linha Alho</span>
       <h2>Alho Roxo</h2>
-      <p>Cabeças selecionadas de alho roxo — aroma e sabor intensos.</p>
+      <b>Cabeças selecionadas de alho roxo — aroma e sabor intensos.</b>
     </div>
     <div class="grid" id="gridRoxo"></div>
   </div>
@@ -1108,16 +1154,17 @@ a{ color: inherit; text-decoration: none; }
     <div>
       <h4>🧄 Alho &amp; Feira</h4>
       <p>
-        Alho descascado, picado e roxo com qualidade, além de pacotes de feira
-        montados do seu jeito. Frescor e praticidade na sua cozinha.
+        Alho roxo em cabeça, triturado e descascado com qualidade, além de
+        pacotes de feira montados do seu jeito. Frescor e praticidade na sua
+        cozinha.
       </p>
     </div>
     <div>
       <h4>Produtos</h4>
       <ul>
-        <li><a href="#alho-descascado">Alho Descascado</a></li>
-        <li><a href="#alho-picado">Alho Puro e Triturado</a></li>
         <li><a href="#alho-roxo">Alho Roxo</a></li>
+        <li><a href="#alho-descascado">Alho Descascado</a></li>
+        <li><a href="#alho-triturado">Alho Triturado</a></li>
         <li><a href="#feira">Pacotes de Feira</a></li>
       </ul>
     </div>
@@ -1125,13 +1172,13 @@ a{ color: inherit; text-decoration: none; }
       <h4>Pedidos &amp; Entrega</h4>
       <ul>
         <li>
-          <a href="https://wa.me/5511994783584" target="_blank" rel="noopener"
+          <a href="https://wa.me/5511989321702" target="_blank" rel="noopener"
              style="display:inline-flex; align-items:center; gap:8px;">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="#25D366"
                  aria-hidden="true" style="flex-shrink:0;">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 0 1 6.988 2.898 9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
             </svg>
-            WhatsApp: (11) 99478-3584
+            WhatsApp: (11) 98932-1702
           </a>
         </li>
         <li>🧺 Feira: Pedidos — até as 21h do Sábado</li>
@@ -1239,7 +1286,7 @@ a{ color: inherit; text-decoration: none; }
       Finalizar pedido no WhatsApp
     </button>
     <small>
-      Você será redirecionado para o WhatsApp (11) 99478-3584.<br>
+      Você será redirecionado para o WhatsApp (11) 98932-1702.<br>
       📦 Entrega via iFood, 99 e apps parceiros.
     </small>
   </div>
@@ -1251,7 +1298,7 @@ a{ color: inherit; text-decoration: none; }
     <h3 id="modalTitle">Enviar pedido pelo WhatsApp?</h3>
     <p class="modal__desc">
       Seu pedido será enviado para<br>
-      <strong>(11) 99478-3584</strong>
+      <strong>(11) 98932-1702</strong>
     </p>
     <div class="countdown pulse" id="countdown">5</div>
     <p class="modal__hint" id="modalHint">Redirecionando automaticamente...</p>
@@ -1266,7 +1313,7 @@ a{ color: inherit; text-decoration: none; }
 <script>
 /* CONFIG */
 const CONFIG = {
-  whatsapp: '5511994783584',
+  whatsapp: '5511989321702',
   feira: { precoItem: 4.50 },
   modalSegundos: 5
 };
@@ -1277,10 +1324,10 @@ const IMG = {
   'desc-500': './d.alho.webp',
   'desc-1k':  './d.alho.webp',
   'desc-2k':  './d.alho.webp',
-  'pic-250':  './triturado.webp',
-  'pic-500':  './triturado.webp',
-  'pic-1k':   './triturado.webp',
-  'roxo-5':   './alho.roxo.webp',
+  'tri-250':  './triturado.webp',
+  'tri-500':  './triturado.webp',
+  'tri-1k':   './triturado.webp',
+  'roxo-5':   './alr.jpeg',
 
   cenoura:      './cenoura.webp',
   cebola:       './cebola.webp',
@@ -1302,15 +1349,18 @@ const IMG = {
 };
 
 const PRODUTOS = [
+  /* DESCASCADO */
   { id:'desc-250', cat:'descascado', nome:'Alho Descascado', peso:'250g', preco:10.00, emoji:'🧄' },
   { id:'desc-500', cat:'descascado', nome:'Alho Descascado', peso:'500g', preco:17.00, emoji:'🧄', tag:'Mais vendido', tagTipo:'vendido' },
   { id:'desc-1k',  cat:'descascado', nome:'Alho Descascado', peso:'1kg',  preco:33.00, emoji:'🧄' },
   { id:'desc-2k',  cat:'descascado', nome:'Alho Descascado', peso:'2kg',  preco:66.00, emoji:'🧄' },
 
-  { id:'pic-250', cat:'picado', nome:'Alho Triturado', peso:'250g', preco:17.00, emoji:'🫙' },
-  { id:'pic-500', cat:'picado', nome:'Alho Triturado', peso:'500g', preco:34.00, emoji:'🫙', tag:'Mais vendido', tagTipo:'vendido' },
-  { id:'pic-1k',  cat:'picado', nome:'Alho Triturado', peso:'1kg',  preco:68.00, emoji:'🫙' },
+  /* TRITURADO */
+  { id:'tri-250', cat:'triturado', nome:'Alho Triturado', peso:'250g', preco:17.00, emoji:'🫙' },
+  { id:'tri-500', cat:'triturado', nome:'Alho Triturado', peso:'500g', preco:34.00, emoji:'🫙', tag:'Mais vendido', tagTipo:'vendido' },
+  { id:'tri-1k',  cat:'triturado', nome:'Alho Triturado', peso:'1kg',  preco:68.00, emoji:'🫙' },
 
+  /* ROXO */
   { id:'roxo-5', cat:'roxo', nome:'Alho Roxo', peso:'5 cabeças', preco:12.00, emoji:'🧄', destaque:true, destaquePeso:true }
 ];
 
@@ -1472,7 +1522,7 @@ function renderProdutos(){
     if (el) el.innerHTML = PRODUTOS.filter(p => p.cat === cat).map(cardProduto).join('');
   };
   monta('descascado', '#gridDescascado');
-  monta('picado',     '#gridPicado');
+  monta('triturado',  '#gridTriturado');
   monta('roxo',       '#gridRoxo');
 }
 
@@ -1934,7 +1984,7 @@ $('#btnWhats').addEventListener('click', () => {
   carrinho.forEach((item) => {
     const subtotal = item.preco * item.qtd;
     const desc = item.desc ? ` (${boldPesoWpp(item.desc)})` : '';
-    L.push(`* ${item.nome}${desc}`);
+    L.push(`✅ ${item.nome}${desc}`);
     L.push(`   ${item.qtd}x ${moeda(item.preco)} = *${moeda(subtotal)}*`);
     L.push('');
   });
